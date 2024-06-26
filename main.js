@@ -1,43 +1,18 @@
-function formatDate(date) {
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const periodOneStartDate = "20-06-2024 07:55:14";
+const periodOneEndDate = "20-06-2024 10:55:14";
 
-    const dayName = days[date.getDay()];
-    const day = date.getDate();
-    const month = months[date.getMonth()];
-    const year = date.getFullYear();
+const periodOneStartDate2 = "20-06-2024 11:00:14";
+const periodOneEndDate2 = "20-06-2024 14:55:14";
 
-    return `${dayName}, ${day}.${month}.${year}`;
-}
-
-function getHoursAndMinutes(date) {
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-
-    return `${hours}:${minutes}`
-}
-
+const periodTwoStartDate = "21-06-2024 08:55:14";
+const periodTwoEndDate = "21-06-2024 11:55:14";
 
 var groups = new vis.DataSet([
     {
-        id: formatDate(new Date(2024, 5, 24, 8, 30, 0)), content: `${formatDate(new Date(2024, 5, 24, 8, 30, 0))}`, value: formatDate(new Date(2024, 5, 24, 8, 30, 0)), start: new Date(2024, 5, 20, 8, 30, 0),
-        end: new Date(2024, 5, 20, 12, 30, 0),
+        id: formatDateToBeReadable(new Date(switchDayMonth(periodOneStartDate))),
     },
     {
-        id: formatDate(new Date(2024, 5, 23, 8, 30, 0)), content: `${formatDate(new Date(2024, 5, 23, 8, 30, 0))}`, value: formatDate(new Date(2024, 5, 23, 8, 30, 0)), start: new Date(2024, 5, 20, 8, 30, 0),
-        end: new Date(2024, 5, 20, 12, 30, 0),
-    },
-    {
-        id: formatDate(new Date(2024, 5, 22, 8, 30, 0)), content: `${formatDate(new Date(2024, 5, 22, 8, 30, 0))}`, value: formatDate(new Date(2024, 5, 22, 8, 30, 0)), start: new Date(2024, 5, 20, 8, 30, 0),
-        end: new Date(2024, 5, 20, 12, 30, 0),
-    },
-    {
-        id: formatDate(new Date(2024, 5, 21, 8, 30, 0)), content: `${formatDate(new Date(2024, 5, 21, 8, 30, 0))}`, value: formatDate(new Date(2024, 5, 21, 8, 30, 0)), start: new Date(2024, 5, 20, 8, 30, 0),
-        end: new Date(2024, 5, 20, 12, 30, 0),
-    },
-    {
-        id: formatDate(new Date(2024, 5, 20, 8, 30, 0)), content: `${formatDate(new Date(2024, 5, 20, 8, 30, 0))}`, value: formatDate(new Date(2024, 5, 20, 8, 30, 0)), start: new Date(2024, 5, 20, 8, 30, 0),
-        end: new Date(2024, 5, 20, 12, 30, 0),
+        id: formatDateToBeReadable(new Date(switchDayMonth(periodTwoStartDate))),
     },
 ]);
 
@@ -46,73 +21,41 @@ var groups = new vis.DataSet([
 var items = new vis.DataSet([
     {
         id: 0,
-        group: formatDate(new Date(2024, 5, 24, 8, 30, 0)),
-        content: "item 0",
-        title: `${formatDate(new Date(2024, 5, 24, 8, 30, 0))} | ${getHoursAndMinutes(new Date(2024, 5, 24, 8, 30, 0), true)} - ${getHoursAndMinutes(new Date(2024, 5, 24, 12, 30, 0), true)}`,
-        start: new Date(2024, 5, 20, 8, 30, 0),
-        end: new Date(2024, 5, 20, 12, 30, 0),
-    },
-    {
-        id: "02",
-        group: formatDate(new Date(2024, 5, 24, 8, 30, 0)),
-        content: "item 02",
-        title: `${formatDate(new Date(2024, 5, 24, 8, 30, 0))} | ${getHoursAndMinutes(new Date(2024, 5, 24, 8, 30, 0), true)} - ${getHoursAndMinutes(new Date(2024, 5, 24, 12, 30, 0), true)}`,
-        start: new Date(2024, 5, 20, 12, 40, 0),
-        end: new Date(2024, 5, 20, 16, 30, 0),
-    },
-    {
-        id: 1,
-        group: formatDate(new Date(2024, 5, 23, 8, 30, 0)),
-        content: "item 1",
-        title: `${formatDate(new Date(2024, 5, 23, 8, 30, 0))} | ${getHoursAndMinutes(new Date(2024, 5, 24, 8, 30, 0), true)} - ${getHoursAndMinutes(new Date(2024, 5, 24, 12, 30, 0), true)}`,
-        start: new Date(2024, 5, 20, 8, 30, 0),
-        end: new Date(2024, 5, 20, 12, 30, 0),
-    },
-    {
-        id: "01",
-        group: formatDate(new Date(2024, 5, 23, 8, 30, 0)),
-        content: "item 04",
-        title: `${formatDate(new Date(2024, 5, 24, 8, 30, 0))} | ${getHoursAndMinutes(new Date(2024, 5, 24, 8, 30, 0), true)} - ${getHoursAndMinutes(new Date(2024, 5, 24, 12, 30, 0), true)}`,
-        start: new Date(2024, 5, 20, 12, 35, 0),
-        end: new Date(2024, 5, 20, 14, 30, 0),
+        group: formatDateToBeReadable(new Date(switchDayMonth(periodOneStartDate))),
+        content: `${formatDateToBeReadable(new Date(switchDayMonth(periodOneStartDate)))} | ${getHoursAndMinutes(new Date(switchDayMonth(periodOneStartDate)))} - ${getHoursAndMinutes(new Date(switchDayMonth(periodOneEndDate)))}`,
+        start: makeDateForChart(periodOneStartDate),
+        end: makeDateForChart(periodOneEndDate),
     },
     {
         id: 2,
-        group: formatDate(new Date(2024, 5, 22, 8, 30, 0)),
-        content: "item 2",
-        title: `${formatDate(new Date(2024, 5, 22, 8, 30, 0))} | ${getHoursAndMinutes(new Date(2024, 5, 24, 8, 30, 0), true)} - ${getHoursAndMinutes(new Date(2024, 5, 24, 12, 30, 0), true)}`,
-        start: new Date(2024, 5, 20, 8, 30, 0),
-        end: new Date(2024, 5, 20, 12, 30, 0),
+        group: formatDateToBeReadable(new Date(switchDayMonth(periodOneStartDate2))),
+        content: `${formatDateToBeReadable(new Date(switchDayMonth(periodOneStartDate2)))} | ${getHoursAndMinutes(new Date(switchDayMonth(periodOneStartDate2)))} - ${getHoursAndMinutes(new Date(switchDayMonth(periodOneEndDate2)))}`,
+        start: makeDateForChart(periodOneStartDate2),
+        end: makeDateForChart(periodOneEndDate2),
     },
     {
         id: 3,
-        group: formatDate(new Date(2024, 5, 21, 8, 30, 0)),
-        content: "item 3",
-        title: `${formatDate(new Date(2024, 5, 21, 8, 30, 0))} | ${getHoursAndMinutes(new Date(2024, 5, 24, 8, 30, 0), true)} - ${getHoursAndMinutes(new Date(2024, 5, 24, 12, 30, 0), true)}`,
-        start: new Date(2024, 5, 20, 8, 30, 0),
-        end: new Date(2024, 5, 20, 12, 30, 0),
+        group: formatDateToBeReadable(new Date(switchDayMonth(periodTwoStartDate))),
+        content: `${formatDateToBeReadable(new Date(switchDayMonth(periodTwoStartDate)))} | ${getHoursAndMinutes(new Date(switchDayMonth(periodTwoStartDate)))} - ${getHoursAndMinutes(new Date(switchDayMonth(periodTwoEndDate)))}`,
+        start: makeDateForChart(periodTwoStartDate),
+        end: makeDateForChart(periodTwoEndDate),
     },
-    {
-        id: 4,
-        group: formatDate(new Date(2024, 5, 20, 8, 30, 0)),
-        content: "item 4",
-        title: `${formatDate(new Date(2024, 5, 20, 8, 30, 0))} | ${getHoursAndMinutes(new Date(2024, 5, 24, 8, 30, 0), true)} - ${getHoursAndMinutes(new Date(2024, 5, 24, 12, 30, 0), true)}`,
-        start: new Date(2024, 5, 20, 8, 30, 0),
-        end: new Date(2024, 5, 20, 12, 30, 0),
-    }
 ]);
 
-// create visualization
+// ====================================================================================== create visualization
 var container = document.getElementById("visualization");
 var options = {
     showMinorLabels: true,
     showMajorLabels: false,
+    stack: false,
+    groupHeightMode: "fitItems",
     orientation: "bottom",
     showWeekScale: false,
     showTooltips: true,
     tooltip: {
         followMouse: true,
         delay: 100,
+        template: getTooltipContent
     },
     selectable: false,
     showCurrentTime: true,
