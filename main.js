@@ -19,11 +19,26 @@ function getHoursAndMinutes(date) {
 
 
 var groups = new vis.DataSet([
-    { id: formatDate(new Date(2024, 5, 24, 8, 30, 0)), content: `${formatDate(new Date(2024, 5, 24, 8, 30, 0))}`, value: formatDate(new Date(2024, 5, 24, 8, 30, 0)) },
-    { id: formatDate(new Date(2024, 5, 23, 8, 30, 0)), content: `${formatDate(new Date(2024, 5, 23, 8, 30, 0))}`, value: formatDate(new Date(2024, 5, 23, 8, 30, 0)) },
-    { id: formatDate(new Date(2024, 5, 22, 8, 30, 0)), content: `${formatDate(new Date(2024, 5, 22, 8, 30, 0))}`, value: formatDate(new Date(2024, 5, 22, 8, 30, 0)) },
-    { id: formatDate(new Date(2024, 5, 21, 8, 30, 0)), content: `${formatDate(new Date(2024, 5, 21, 8, 30, 0))}`, value: formatDate(new Date(2024, 5, 21, 8, 30, 0)) },
-    { id: formatDate(new Date(2024, 5, 20, 8, 30, 0)), content: `${formatDate(new Date(2024, 5, 20, 8, 30, 0))}`, value: formatDate(new Date(2024, 5, 20, 8, 30, 0)) },
+    {
+        id: formatDate(new Date(2024, 5, 24, 8, 30, 0)), content: `${formatDate(new Date(2024, 5, 24, 8, 30, 0))}`, value: formatDate(new Date(2024, 5, 24, 8, 30, 0)), start: new Date(2024, 5, 20, 8, 30, 0),
+        end: new Date(2024, 5, 20, 12, 30, 0),
+    },
+    {
+        id: formatDate(new Date(2024, 5, 23, 8, 30, 0)), content: `${formatDate(new Date(2024, 5, 23, 8, 30, 0))}`, value: formatDate(new Date(2024, 5, 23, 8, 30, 0)), start: new Date(2024, 5, 20, 8, 30, 0),
+        end: new Date(2024, 5, 20, 12, 30, 0),
+    },
+    {
+        id: formatDate(new Date(2024, 5, 22, 8, 30, 0)), content: `${formatDate(new Date(2024, 5, 22, 8, 30, 0))}`, value: formatDate(new Date(2024, 5, 22, 8, 30, 0)), start: new Date(2024, 5, 20, 8, 30, 0),
+        end: new Date(2024, 5, 20, 12, 30, 0),
+    },
+    {
+        id: formatDate(new Date(2024, 5, 21, 8, 30, 0)), content: `${formatDate(new Date(2024, 5, 21, 8, 30, 0))}`, value: formatDate(new Date(2024, 5, 21, 8, 30, 0)), start: new Date(2024, 5, 20, 8, 30, 0),
+        end: new Date(2024, 5, 20, 12, 30, 0),
+    },
+    {
+        id: formatDate(new Date(2024, 5, 20, 8, 30, 0)), content: `${formatDate(new Date(2024, 5, 20, 8, 30, 0))}`, value: formatDate(new Date(2024, 5, 20, 8, 30, 0)), start: new Date(2024, 5, 20, 8, 30, 0),
+        end: new Date(2024, 5, 20, 12, 30, 0),
+    },
 ]);
 
 // create a dataset with items
@@ -54,6 +69,14 @@ var items = new vis.DataSet([
         end: new Date(2024, 5, 20, 12, 30, 0),
     },
     {
+        id: "01",
+        group: formatDate(new Date(2024, 5, 23, 8, 30, 0)),
+        content: "item 04",
+        title: `${formatDate(new Date(2024, 5, 24, 8, 30, 0))} | ${getHoursAndMinutes(new Date(2024, 5, 24, 8, 30, 0), true)} - ${getHoursAndMinutes(new Date(2024, 5, 24, 12, 30, 0), true)}`,
+        start: new Date(2024, 5, 20, 12, 35, 0),
+        end: new Date(2024, 5, 20, 14, 30, 0),
+    },
+    {
         id: 2,
         group: formatDate(new Date(2024, 5, 22, 8, 30, 0)),
         content: "item 2",
@@ -82,11 +105,8 @@ var items = new vis.DataSet([
 // create visualization
 var container = document.getElementById("visualization");
 var options = {
-    groupOrder: function (a, b) {
-        return a.value - b.value;
-    },
     showMinorLabels: true,
-    showMajorLabels:false,
+    showMajorLabels: false,
     orientation: "bottom",
     showWeekScale: false,
     showTooltips: true,
