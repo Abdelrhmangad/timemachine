@@ -1,0 +1,67 @@
+.week_container {
+    background-color: white;
+    width: 100%;
+    max-width: 1140px;
+    margin: auto;
+}
+
+.week {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.week .day {
+    border: 1px solid #e3e3e3;
+    width: 100%;
+    font-size: 14px;
+    font-family: monospace;
+    font-weight: bold;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 15px;
+}
+.week .day .day_date {
+    flex-shrink: 0;
+    border-right: 1px solid #e3e3e3;
+    padding-block: 20px;
+    padding-right: 20px;
+}
+
+.week .day .day_bars {
+    --bar-bg: red;
+    display: flex;
+    width: 100%;
+    height: 25px;
+    flex-grow: 1;
+}
+
+.week .day .day_bars .bar {
+    width: 100%;
+    height: 100%;
+    background-color: var(--bar-bg);
+    flex-grow: 1;
+}
+
+.week .day .day_bars .bar:nth-child(1) {
+    width: 100%;
+    height: 100%;
+    background-color: var(--bar-bg);
+    flex-grow: 1;
+}
+
+.week .day .day_bars .break {
+    width: 10%;
+    height: 100%;
+    background-color: white;
+    flex-grow: 1;
+}
+
+.week .day .day_hours {
+    flex-shrink: 0;
+    border-left: 1px solid #e3e3e3;
+    padding-block: 20px;
+    padding-left: 20px;
+}
