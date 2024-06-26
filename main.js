@@ -1,47 +1,37 @@
-const periodOneStartDate = "20-06-2024 07:55:14";
-const periodOneEndDate = "20-06-2024 10:55:14";
+const periods = [
+    { start: "20-06-2024 07:55:14", end: "20-06-2024 10:55:14" },
+    { start: "20-06-2024 11:00:14", end: "20-06-2024 14:55:14" },
+    { start: "21-06-2024 08:55:14", end: "21-06-2024 11:55:14" },
+    { start: "21-06-2024 12:55:14", end: "21-06-2024 14:55:14" }
+]
 
-const periodOneStartDate2 = "20-06-2024 11:00:14";
-const periodOneEndDate2 = "20-06-2024 14:55:14";
+var groups = new vis.DataSet();
+var items = new vis.DataSet();
 
-const periodTwoStartDate = "21-06-2024 08:55:14";
-const periodTwoEndDate = "21-06-2024 11:55:14";
+for (var i = 0; i < periods.length; i++) {
+    const eachPeriod = periods[i];
+    const start = eachPeriod.start;
+    const end = eachPeriod.end;
 
-var groups = new vis.DataSet([
-    {
-        id: formatDateToBeReadable(new Date(switchDayMonth(periodOneStartDate))),
-    },
-    {
-        id: formatDateToBeReadable(new Date(switchDayMonth(periodTwoStartDate))),
-    },
-]);
+    const groupsArr = groups.get()
+
+    if (!hasGroupWithId(groupsArr, formatDateToBeReadable(new Date(switchDayMonth(start))))) {
+        groups.add({
+            id: formatDateToBeReadable(new Date(switchDayMonth(start))),
+        });
+    }
+
+    items.add({
+        id: i + formatDateToBeReadable(new Date(switchDayMonth(start))),
+        group: formatDateToBeReadable(new Date(switchDayMonth(start))),
+        content: `${formatDateToBeReadable(new Date(switchDayMonth(start)))} | ${getHoursAndMinutes(new Date(switchDayMonth(start)))} - ${getHoursAndMinutes(new Date(switchDayMonth(end)))}`,
+        start: makeDateForChart(start),
+        end: makeDateForChart(end),
+    });
+}
 
 // create a dataset with items
 // note that months are zero-based in the JavaScript Date object, so month 3 is April
-var items = new vis.DataSet([
-    {
-        id: 0,
-        group: formatDateToBeReadable(new Date(switchDayMonth(periodOneStartDate))),
-        content: `${formatDateToBeReadable(new Date(switchDayMonth(periodOneStartDate)))} | ${getHoursAndMinutes(new Date(switchDayMonth(periodOneStartDate)))} - ${getHoursAndMinutes(new Date(switchDayMonth(periodOneEndDate)))}`,
-        start: makeDateForChart(periodOneStartDate),
-        end: makeDateForChart(periodOneEndDate),
-    },
-    {
-        id: 2,
-        group: formatDateToBeReadable(new Date(switchDayMonth(periodOneStartDate2))),
-        content: `${formatDateToBeReadable(new Date(switchDayMonth(periodOneStartDate2)))} | ${getHoursAndMinutes(new Date(switchDayMonth(periodOneStartDate2)))} - ${getHoursAndMinutes(new Date(switchDayMonth(periodOneEndDate2)))}`,
-        start: makeDateForChart(periodOneStartDate2),
-        end: makeDateForChart(periodOneEndDate2),
-    },
-    {
-        id: 3,
-        group: formatDateToBeReadable(new Date(switchDayMonth(periodTwoStartDate))),
-        content: `${formatDateToBeReadable(new Date(switchDayMonth(periodTwoStartDate)))} | ${getHoursAndMinutes(new Date(switchDayMonth(periodTwoStartDate)))} - ${getHoursAndMinutes(new Date(switchDayMonth(periodTwoEndDate)))}`,
-        start: makeDateForChart(periodTwoStartDate),
-        end: makeDateForChart(periodTwoEndDate),
-    },
-]);
-
 // ====================================================================================== create visualization
 var container = document.getElementById("visualization");
 var options = {

@@ -23,7 +23,7 @@ function switchDayMonth(dateString) {
     const month = parts[1];
     const year = parts[2];
     const time = parts.slice(3).join(":"); // Join remaining parts for time
-  
+
     // Swap day and month
     return `${month}-${day}-${year} ${time}`;
 }
@@ -81,5 +81,9 @@ function getHoursAndMinutes(date) {
     const minutes = date.getMinutes();
 
     return `${hours}:${minutes}`
+}
+
+function hasGroupWithId(arr, id) {
+    return arr.some(obj => obj.id === id);
 }
 // ======================================================= END Reusable functions ================================= //
