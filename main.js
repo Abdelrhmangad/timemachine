@@ -33,39 +33,39 @@ var items = new vis.DataSet([
         id: 0,
         group: formatDate(new Date(2024, 5, 24, 8, 30, 0)),
         content: "item 0",
-        title: `${getHoursAndMinutes(new Date(2024, 5, 24, 8, 30, 0), true)} - ${getHoursAndMinutes(new Date(2024, 5, 24, 12, 30, 0), true)}`,
-        start: new Date(2024, 5, 24, 8, 30, 0),
-        end: new Date(2024, 5, 24, 12, 30, 0),
+        title: `${formatDate(new Date(2024, 5, 24, 8, 30, 0))} | ${getHoursAndMinutes(new Date(2024, 5, 24, 8, 30, 0), true)} - ${getHoursAndMinutes(new Date(2024, 5, 24, 12, 30, 0), true)}`,
+        start: new Date(2024, 5, 20, 8, 30, 0),
+        end: new Date(2024, 5, 20, 12, 30, 0),
     },
     {
         id: 1,
         group: formatDate(new Date(2024, 5, 23, 8, 30, 0)),
         content: "item 1",
-        title: `${getHoursAndMinutes(new Date(2024, 5, 24, 8, 30, 0), true)} - ${getHoursAndMinutes(new Date(2024, 5, 24, 12, 30, 0), true)}`,
-        start: new Date(2024, 5, 23, 8, 30, 0),
-        end: new Date(2024, 5, 23, 12, 30, 0),
+        title: `${formatDate(new Date(2024, 5, 23, 8, 30, 0))} | ${getHoursAndMinutes(new Date(2024, 5, 24, 8, 30, 0), true)} - ${getHoursAndMinutes(new Date(2024, 5, 24, 12, 30, 0), true)}`,
+        start: new Date(2024, 5, 20, 8, 30, 0),
+        end: new Date(2024, 5, 20, 12, 30, 0),
     },
     {
         id: 2,
         group: formatDate(new Date(2024, 5, 22, 8, 30, 0)),
         content: "item 2",
-        title: `${getHoursAndMinutes(new Date(2024, 5, 24, 8, 30, 0), true)} - ${getHoursAndMinutes(new Date(2024, 5, 24, 12, 30, 0), true)}`,
-        start: new Date(2024, 5, 22, 8, 30, 0),
-        end: new Date(2024, 5, 22, 12, 30, 0),
+        title: `${formatDate(new Date(2024, 5, 22, 8, 30, 0))} | ${getHoursAndMinutes(new Date(2024, 5, 24, 8, 30, 0), true)} - ${getHoursAndMinutes(new Date(2024, 5, 24, 12, 30, 0), true)}`,
+        start: new Date(2024, 5, 20, 8, 30, 0),
+        end: new Date(2024, 5, 20, 12, 30, 0),
     },
     {
         id: 3,
         group: formatDate(new Date(2024, 5, 21, 8, 30, 0)),
         content: "item 3",
-        title: `${getHoursAndMinutes(new Date(2024, 5, 24, 8, 30, 0), true)} - ${getHoursAndMinutes(new Date(2024, 5, 24, 12, 30, 0), true)}`,
-        start: new Date(2024, 5, 21, 8, 30, 0),
-        end: new Date(2024, 5, 21, 12, 30, 0),
+        title: `${formatDate(new Date(2024, 5, 21, 8, 30, 0))} | ${getHoursAndMinutes(new Date(2024, 5, 24, 8, 30, 0), true)} - ${getHoursAndMinutes(new Date(2024, 5, 24, 12, 30, 0), true)}`,
+        start: new Date(2024, 5, 20, 8, 30, 0),
+        end: new Date(2024, 5, 20, 12, 30, 0),
     },
     {
         id: 4,
         group: formatDate(new Date(2024, 5, 20, 8, 30, 0)),
         content: "item 4",
-        title: `${getHoursAndMinutes(new Date(2024, 5, 24, 8, 30, 0), true)} - ${getHoursAndMinutes(new Date(2024, 5, 24, 12, 30, 0), true)}`,
+        title: `${formatDate(new Date(2024, 5, 20, 8, 30, 0))} | ${getHoursAndMinutes(new Date(2024, 5, 24, 8, 30, 0), true)} - ${getHoursAndMinutes(new Date(2024, 5, 24, 12, 30, 0), true)}`,
         start: new Date(2024, 5, 20, 8, 30, 0),
         end: new Date(2024, 5, 20, 12, 30, 0),
     }
@@ -77,10 +77,15 @@ var options = {
     groupOrder: function (a, b) {
         return a.value - b.value;
     },
-    showMinorLabels: false,
+    showMinorLabels: true,
+    showMajorLabels:false,
     orientation: "bottom",
-    showWeekScale: true,
+    showWeekScale: false,
     showTooltips: true,
+    tooltip: {
+        followMouse: true,
+        delay: 100,
+    },
     selectable: false,
     showCurrentTime: true,
     timeAxis: { scale: 'hour', step: 1 },
@@ -90,12 +95,6 @@ var options = {
 };
 
 var timeline = new vis.Timeline(container);
-var ONE_DAY_IN_MS = 1000 * 60 * 60;
-var now = new Date();
-var nowInMs = now.getTime();
-var oneDayFromNow = nowInMs + ONE_DAY_IN_MS;
-timeline.setWindow(nowInMs, oneDayFromNow);
-
 timeline.setOptions(options);
 timeline.setGroups(groups);
 timeline.setItems(items);
