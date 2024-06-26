@@ -38,6 +38,14 @@ var items = new vis.DataSet([
         end: new Date(2024, 5, 20, 12, 30, 0),
     },
     {
+        id: "02",
+        group: formatDate(new Date(2024, 5, 24, 8, 30, 0)),
+        content: "item 02",
+        title: `${formatDate(new Date(2024, 5, 24, 8, 30, 0))} | ${getHoursAndMinutes(new Date(2024, 5, 24, 8, 30, 0), true)} - ${getHoursAndMinutes(new Date(2024, 5, 24, 12, 30, 0), true)}`,
+        start: new Date(2024, 5, 20, 12, 40, 0),
+        end: new Date(2024, 5, 20, 16, 30, 0),
+    },
+    {
         id: 1,
         group: formatDate(new Date(2024, 5, 23, 8, 30, 0)),
         content: "item 1",
