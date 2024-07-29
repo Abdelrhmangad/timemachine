@@ -35,14 +35,15 @@ function makeDateForChart(dateString) {
     const timePart = parts[1].split(":");
 
     // Extract year, month (0-indexed), day, hour, minute, and second
-    const year = parseInt(datePart[2], 10);
     const hour = parseInt(timePart[0], 10);
     const minute = parseInt(timePart[1], 10);
     const second = parseInt(timePart[2], 10) || 0; // Handle optional seconds
     // const month = parseInt(datePart[1], 10) - 1;
     // const day = parseInt(datePart[0], 10);
-    const month = 8; // Static month number, as the chart doesn't support dynamic month numbers
-    const day = 1;  // Static day number for the chart
+    // const year = parseInt(datePart[2], 10);
+    const year = 2024;
+    const month = 8;
+    const day = 1; 
 
     // Create a new Date object with the desired day (20) and extracted time
     return new Date(year, month, day, hour, minute, second);
