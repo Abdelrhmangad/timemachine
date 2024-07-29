@@ -3,10 +3,12 @@ const periods = [
     // { start: "21-08-2024 08:00:14", end: "21-08-2024 11:00:14" },
     // { start: "19-06-2024 08:20:14", end: "19-06-2024 11:15:14" },
     // { start: "19-06-2024 11:20:14", end: "19-06-2024 14:45:14" },
-    { start: "20-06-2024 07:55:14", end: "20-06-2024 10:55:14" },
-    { start: "20-06-2024 11:00:14", end: "20-06-2024 14:55:14" },
-    { start: "21-06-2024 08:55:14", end: "21-06-2024 11:55:14" },
-    { end: "25-07-2024 15:54:32", start: "25-07-2024 12:54:04" }
+    { start: "20-06-2024 08:00:00", end: "20-06-2024 12:00:00" },
+    { start: "20-06-2024 13:00:00", end: "20-06-2024 17:00:00" },
+    { start: "21-06-2024 08:00:14", end: "21-06-2024 13:55:14" },
+    { start: "21-06-2024 14:55:14", end: "21-06-2024 19:55:14" },
+    { start: "25-07-2024 09:11:04", end: "25-07-2024 13:54:32", },
+    { start: "25-07-2024 14:00:04", end: "25-07-2024 16:00:32" }
 ]
 
 var groups = new vis.DataSet();
@@ -27,7 +29,6 @@ for (var i = 0; i < periods.length; i++) {
 
     items.add({
         id: i + formatDateToBeReadable(new Date(switchDayMonth(start))),
-        className: "",
         group: formatDateToBeReadable(new Date(switchDayMonth(start))),
         content: `${formatDateToBeReadable(new Date(switchDayMonth(start)))} | ${getHoursAndMinutes(new Date(switchDayMonth(start)))} - ${getHoursAndMinutes(new Date(switchDayMonth(end)))}`,
         start: makeDateForChart(start),
